@@ -43,7 +43,7 @@ Audio Input\
 -   Librosa -- Audio preprocessing\
 -   FastAPI -- REST API deployment\
 -   PyTorch -- Feature extraction\
--   AWS (AMD-powered instances) -- Cloud hosting
+-   AWS -- Cloud hosting
 
 ### Features
 
