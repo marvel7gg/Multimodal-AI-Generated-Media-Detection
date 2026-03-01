@@ -1,129 +1,127 @@
-# 🎙️ AI Voice Detection API
+# Multimodal Deepfake Detection System
 
-**Wav2Vec2 + XGBoost based Speech Authenticity Detection**
-
-This project detects whether a voice recording is **Human** or
-**AI-Generated** using self-supervised speech embeddings and a
-lightweight classifier.
+AI-powered system for detecting synthetic media across audio, image, and
+video formats.
 
 ------------------------------------------------------------------------
 
-## 🚀 Overview
+## Overview
 
-The pipeline extracts deep speech representations using **Wav2Vec2**,
-pools temporal features, and classifies them using **XGBoost**.
+Generative AI enables highly realistic fake voices, images, and videos.
+While innovative, it also increases risks of fraud, impersonation, and
+misinformation --- particularly targeting elderly and non-tech-savvy
+individuals.
 
-Designed for: - 🎤 Real microphone recordings\
-- 🤖 AI generated speech (TTS)\
-- 📱 Re-recorded audio scenarios\
-- 🌍 Multi-language speech
+This project proposes a multimodal deepfake detection framework designed
+for real-world robustness and scalable deployment.
 
 ------------------------------------------------------------------------
 
-## 🧠 Architecture
+# Currently Implemented (Working Module)
+
+## AI Voice Detection (Production-Ready)
+
+The deployed module detects whether an audio clip is:
+
+-   Human
+-   AI-Generated
+
+### Core Architecture
 
 Audio Input\
 → Silence Trimming\
 → 2-Second Chunking\
 → Wav2Vec2 Feature Extraction\
 → Mean Pooling\
+→ XGBoost Classification\
+→ JSON Response
+
+### Technologies Used
+
+-   Wav2Vec2 (facebook/wav2vec2-xls-r-300m) -- Deep speech embeddings\
+-   XGBoost -- AI vs Human classifier\
+-   Librosa -- Audio preprocessing\
+-   FastAPI -- REST API deployment\
+-   PyTorch -- Feature extraction\
+-   AWS (AMD-powered instances) -- Cloud hosting
+
+### Features
+
+-   Supports mp3, wav, m4a, ogg\
+-   Handles microphone recordings\
+-   Works with re-recorded audio\
+-   Real-time API response (\~200--400ms)\
+-   API key secured endpoint
+
+------------------------------------------------------------------------
+
+# To Be Implemented (Planned Modules)
+
+## AI Image Detection
+
+-   CNN-based artifact detection\
+-   GAN fingerprint analysis\
+-   Compression-aware robustness
+
+## AI Video Detection
+
+-   Frame-level CNN analysis\
+-   Temporal inconsistency detection\
+-   Lip-sync anomaly detection
+
+## Full Multimodal Verification
+
+-   Cross-modal consistency checks\
+-   Voice--Video synchronization validation\
+-   Identity verification framework
+
+## Security Enhancements
+
+-   Replay-attack optimized features (CQCC integration)\
+-   Adversarial robustness testing\
+-   Production-grade monitoring dashboard
+
+------------------------------------------------------------------------
+
+# System Architecture (Current)
+
+Client\
+→ FastAPI Gateway\
+→ Audio Processing Layer\
+→ Wav2Vec2 Embedding Engine\
 → XGBoost Classifier\
-→ Prediction + Confidence
+→ Structured JSON Response
 
 ------------------------------------------------------------------------
 
-## ⚙️ Key Design Decisions
+# Alignment with AMD Slingshot
 
-### ✅ Silence Trimming
-
-Removes non-speech regions to reduce background bias.
-
-### ✅ 2-Second Chunking
-
-Long recordings are split into fixed windows so the model focuses on
-speech characteristics rather than duration.
-
-### ✅ Middle-Layer Pooling
-
-Uses hidden_states\[8\] embeddings from Wav2Vec2 for robust phonetic
-features.
-
-### ❌ No Augmentation (Baseline Model)
-
-This version uses clean preprocessing only: - No artificial noise - No
-reverbs - No spectral manipulation
+-   AI Innovation using self-supervised speech models\
+-   Optimized for AMD-powered cloud compute\
+-   Scalable cloud-native architecture\
+-   Real-world fraud prevention focus\
+-   Energy-efficient hybrid ML pipeline
 
 ------------------------------------------------------------------------
 
-## 📂 Project Structure
+# Estimated Cost
 
-ai-voice-detector/ - app.py\
-- ai_voice_detector_xgb_v2.pkl\
-- trainer/\
-- notebooks/
+Development (Prototype): \~\$80/month\
+Production Deployment: \~\$300--\$400/month
 
-------------------------------------------------------------------------
-
-## 🏋️ Training Pipeline
-
-1.  Resample audio to 16kHz\
-2.  Trim silence\
-3.  Split into 2-second chunks\
-4.  Extract embeddings using facebook/wav2vec2-xls-r-300m\
-5.  Train XGBoost classifier
+Cloud-native and scalable.
 
 ------------------------------------------------------------------------
 
-## 🧪 Inference Example
+# Limitations (Current Version)
 
-    predict_file("audio.wav")
-
-Output:
-
-    {
-      "prediction": "AI",
-      "confidence": 0.92,
-      "explanation": "Detected spectral and prosodic patterns..."
-    }
+-   Extremely low bitrate audio may affect performance\
+-   Image & video modules under development
 
 ------------------------------------------------------------------------
 
-## 🔐 API Usage
+# Future Vision
 
-Endpoint:
-
-POST /api/voice-detection
-
-Headers: x-api-key: YOUR_API_KEY
-
-Request JSON:
-
-{ "language": "English", "audioFormat": "mp3", "audioBase64":
-"`<BASE64_AUDIO>`{=html}" }
-
-------------------------------------------------------------------------
-
-## ⚡ Performance
-
--   Inference Time: \~200--400 ms per clip\
--   Lightweight deployment with FastAPI\
--   Real-time capable
-
-------------------------------------------------------------------------
-
-## 🧩 Limitations
-
--   Replay attacks may reduce confidence\
--   Extremely low bitrate audio may degrade performance
-
-------------------------------------------------------------------------
-
-## 🛠️ Future Improvements
-
--   Replay-robust augmentation\
--   CQCC + SSL hybrid features\
--   CNN-based replay detector
-
-------------------------------------------------------------------------
-
-Generated on: 2026-02-20 03:29:16
+A unified multimodal trust engine capable of detecting synthetic
+manipulation across all major digital media formats in real-world
+deployment scenarios.
